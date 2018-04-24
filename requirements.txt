@@ -1,0 +1,8 @@
+discord.py==0.14.3
+aiohttp
+websockets
+chardet
+numpy
+datetime
+asyncio
+pickle
