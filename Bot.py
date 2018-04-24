@@ -11,7 +11,7 @@ async def my_background_task():
     await client.wait_until_ready()
     while not client.is_closed:
         
-        file= open("chtime.pickle","rb")
+        file= open("Discord-CH-Bot/chtime.pickle","rb")
         fload= pickle.load(file)
         fcheck= fload
         print(fcheck)
@@ -24,11 +24,11 @@ async def my_background_task():
                     bosslist[0]=bosslist[0]+ datetime.timedelta(minutes=bosslist[1])
                     bosslist[2]=bosslist[2]+1                    
                 fcheck[key]=bosslist
-                file= open("chtime.pickle","wb")
+                file= open("Discord-CH-Bot/chtime.pickle","wb")
                 pickle.dump(fcheck,file)
                 print(fcheck)
                 file.close()
-                file=open("chtime.pickle","rb")
+                file=open("Discord-CH-Bot/chtime.pickle","rb")
                 fload= pickle.load(file)
                 fcheck=fload
                 file.close()
@@ -37,11 +37,11 @@ async def my_background_task():
                 bosslist[0]=bosslist[0]+ datetime.timedelta(minutes=bosslist[1])
                 bosslist[2]=bosslist[2]+1
                 fcheck[key]=bosslist
-                file= open("chtime.pickle","wb")
+                file= open("Discord-CH-Bot/chtime.pickle","wb")
                 pickle.dump(fcheck,file)
                 print(fcheck)
                 file.close()
-                file=open("chtime.pickle","rb")
+                file=open("Discord-CH-Bot/chtime.pickle","rb")
                 fload= pickle.load(file)
                 fcheck=fload
                 file.close()
@@ -54,7 +54,7 @@ async def my_background_task():
 @client.event
 async def on_message(message):          
     if message.content.startswith('.bosstime'):
-        file= open("chtime.pickle","rb")
+        file= open("Discord-CH-Bot/chtime.pickle","rb")
         fload= pickle.load(file)
         file.close()
         timenowutc= datetime.datetime.utcnow().replace(second=0,microsecond=0)
@@ -62,7 +62,7 @@ async def on_message(message):
             btime=fload[key]
             bftime=btime[0]-timenowutc
             await client.send_message(client.get_channel("436053682866356224"), "**{}** time left : **{}** X **{}**".format(key,bftime,btime[2]))    
-    file= open("chtime.pickle","rb")
+    file= open("Discord-CH-Bot/chtime.pickle","rb")
     fload= pickle.load(file)
     fcheck=fload
     file.close()
@@ -72,10 +72,10 @@ async def on_message(message):
             bosslist[0]=datetime.datetime.utcnow().replace(second=0,microsecond=0)+ datetime.timedelta(minutes=bosslist[1])
             bosslist[2]=0
             fcheck[key]=bosslist
-            file= open("chtime.pickle","wb")
+            file= open("Discord-CH-Bot/chtime.pickle","wb")
             pickle.dump(fcheck,file)
             file.close()
-            file= open("chtime.pickle","rb")
+            file= open("Discord-CH-Bot/chtime.pickle","rb")
             fload= pickle.load(file)
             fcheck=fload
             file.close()
@@ -87,7 +87,7 @@ async def on_message(message):
         await client.send_message(message.channel,"-   **.dl.bosstime** - shows DL boss time")
         await client.send_message(message.channel,"## Bot will automatically reset time with a counter if not reseted manually ## ")
     if message.content.startswith('.f.bosstime'):        
-        file= open("chtime.pickle","rb")
+        file= open("Discord-CH-Bot/chtime.pickle","rb")
         fload= pickle.load(file)
         timenow=datetime.datetime.utcnow().replace(second=0,microsecond=0)
         file.close()
@@ -97,7 +97,7 @@ async def on_message(message):
                 bftime=bdata[0]-timenow
                 await client.send_message(client.get_channel("436053682866356224"), "**{}** time left : **{}** X **{}**".format(key,bftime,bdata[2]))
     if message.content.startswith('.dl.bosstime'):        
-        file= open("chtime.pickle","rb")
+        file= open("Discord-CH-Bot/chtime.pickle","rb")
         fload= pickle.load(file)
         timenow=datetime.datetime.utcnow().replace(second=0,microsecond=0)
         file.close()
