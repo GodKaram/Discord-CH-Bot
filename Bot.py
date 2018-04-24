@@ -111,7 +111,8 @@ async def on_message(message):
             
 
 client.loop.create_task(my_background_task())                    
-                    
-client.run(process.env.BOT_TOKEN)        
+                   
+#client.run(process.env.BOT_TOKEN)
+client.run(NDM1ODQxMjQ4MzI3MTA2NTYw.DcCcEA.ggMHY52pTe1b8Qc6YejBxD4XE-k)
     
    
