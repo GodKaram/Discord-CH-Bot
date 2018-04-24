@@ -5,4 +5,3 @@ chardet
 numpy
 datetime
 asyncio
-pickle
